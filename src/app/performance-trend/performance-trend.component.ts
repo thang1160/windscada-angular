@@ -9,8 +9,8 @@ import * as Utils from '../shared/chartjs/Utils';
 })
 export class PerformanceTrendComponent implements OnInit, AfterViewInit {
 
-  @ViewChild('myChart') myChart: ElementRef<HTMLCanvasElement> | undefined;
-  
+  @ViewChild('myChart') chartCanvas: ElementRef<HTMLCanvasElement> | undefined;
+
   // <block:actions:2>
   // actions = [
   //   {
@@ -24,12 +24,12 @@ export class PerformanceTrendComponent implements OnInit, AfterViewInit {
   //   },
   // ];
   // </block:actions>
-  
+
   // <block:setup:1>
   DATA_COUNT = 7;
-  NUMBER_CFG = {count: this.DATA_COUNT, min: -100, max: 100};
-  
-  labels = Utils.months({count: 7});
+  NUMBER_CFG = { count: this.DATA_COUNT, min: -100, max: 100 };
+
+  labels = Utils.months({ count: 7 });
   data = {
     labels: this.labels,
     datasets: [
@@ -50,7 +50,7 @@ export class PerformanceTrendComponent implements OnInit, AfterViewInit {
     ]
   };
   // </block:setup>
-  
+
   // <block:config:0>
   config: any = {
     type: 'line',
@@ -78,7 +78,7 @@ export class PerformanceTrendComponent implements OnInit, AfterViewInit {
           type: 'linear',
           display: true,
           position: 'right',
-  
+
           // grid line settings
           grid: {
             drawOnChartArea: false, // only want the grid lines for one axis to show up
@@ -88,16 +88,16 @@ export class PerformanceTrendComponent implements OnInit, AfterViewInit {
     },
   };
 
-  constructor() { 
+  myChart?: Chart = undefined;
+
+  constructor() {
     Chart.register(...registerables);
   }
 
   ngAfterViewInit(): void {
-    console.log();
-    const ctx = this.myChart?.nativeElement?.getContext('2d');
+    const ctx = this.chartCanvas?.nativeElement?.getContext('2d');
     if (ctx) {
-      const myChart = new Chart(ctx, this.config);
-          
+      this.myChart = new Chart(ctx, this.config);
     }
   }
 
