@@ -1,0 +1,18 @@
+.alarm{
+
+    margin-top: 20px;
+    
+    ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+        border: 1px solid #ffffff;
+        background: #2b2929;
+    }
+    ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+        border: 1px solid #ffffff;
+        background: #2b2929;
+    }
+    ::ng-deep .p-datatable .p-datatable-tbody > tr.p-highlight > td{
+        color: black;
+        background-color: white;
+        border: 1px solid black;
+    }
+}

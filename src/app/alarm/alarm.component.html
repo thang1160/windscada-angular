@@ -1,0 +1,39 @@
+<div class="alarm">
+    <div class="row mb-3" style="color: white;">
+        <div class="col-8">
+            {{cars.length}} Alarm
+        </div>
+        <div class="col-4">
+            <button pButton pRipple type="button" label="Secondary" class="p-button-secondary p-button-sm mr-1"
+                styleClass="p-button-sm"></button>
+            <button pButton pRipple type="button" label="Secondary" class="p-button-secondary p-button-sm"
+                styleClass="p-button-sm"></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p-table responsiveLayout="scroll" [value]="cars" [scrollable]="true" scrollHeight="400px"
+                selectionMode="single" [(selection)]="selectedProduct2" dataKey="time" responsiveLayout="scroll"
+                (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="min-width:20%">Time</th>
+                        <th style="min-width:20%">Signal_Name</th>
+                        <th style="min-width:20%">OPC_Tag_Name</th>
+                        <th style="min-width:20%">Alarm_Class</th>
+                        <th style="min-width:20%">Description</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-car>
+                    <tr [pSelectableRow]=car>
+                        <td style="min-width:20%">{{car.time}}</td>
+                        <td style="min-width:20%">{{car.signalName}}</td>
+                        <td style="min-width:20%">{{car.tagName}}</td>
+                        <td style="min-width:20%">{{car.alarmClass}}</td>
+                        <td style="min-width:20%">{{car.des}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
