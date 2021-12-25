@@ -1,4 +1,5 @@
 import { TableModule } from 'primeng/table';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -7,6 +8,7 @@ import { AppComponent } from './app.component';
 import { PerformanceTrendComponent } from './performance-trend/performance-trend.component';
 import { AlarmComponent } from './alarm/alarm.component';
 import { ButtonModule } from 'primeng/button';
+import { PerformanceTrendService } from './service/performance-trend.service';
 
 @NgModule({
   declarations: [
@@ -18,9 +20,12 @@ import { ButtonModule } from 'primeng/button';
     BrowserModule,
     AppRoutingModule,
     TableModule,
-    ButtonModule
+    ButtonModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    PerformanceTrendService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
