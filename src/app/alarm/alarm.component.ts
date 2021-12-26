@@ -1,57 +1,54 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MatDialog } from '@angular/material/dialog';
+import { AlarmServices } from '../service/alarm.service';
 @Component({
   selector: 'app-alarm',
   templateUrl: './alarm.component.html',
   styleUrls: ['./alarm.component.scss']
 })
-export class AlarmComponent implements OnInit {
+export class AlarmComponent {
 
-  // <th style="min-width:20%">Time</th>
-  // <th style="min-width:20%">Signal_Name</th>
-  // <th style="min-width:20%">OPC_Tag_Name</th>
-  // <th style="min-width:20%">Alarm_Class</th>
-  // <th style="min-width:20%">Description</th>
-  public cars = [
-    {
-      "time": "1",
-      "signalName": "a",
-      "tagName": "a",
-      "alarmClass": "a",
-      "des": "a",
-    },{
-      "time": "2",
-      "signalName": "b",
-      "tagName": "b",
-      "alarmClass": "b",
-      "des": "b",
-    },{
-      "time": "3",
-      "signalName": "c",
-      "tagName": "c",
-      "alarmClass": "c",
-      "des": "c",
-    },{
-      "time": "4",
-      "signalName": "d",
-      "tagName": "d",
-      "alarmClass": "d",
-      "des": "d",
-    }
-  ];
-  public selectedProduct2: any
-  constructor() { }
+
+  public cars = [];
+  public searchTagName: string = "";
+
+  displayBasic: boolean = false;
+  public selectedProduct: any
+  dialogRef: any;
+
+  constructor(public dialog: MatDialog, public alarmServices: AlarmServices) { }
+
 
   ngOnInit(): void {
+    this.alarmServices.getAlarms("").subscribe(x => {
+      console.log(x)
+      this.cars = x;
+    })
   }
 
-  onRowUnselect(event: Event) {
+  search() {
+    this.alarmServices.getAlarms(this.searchTagName).subscribe(x => {
+      console.log(x)
+      this.cars = x;
+    })
+  }
 
+  redNotice(alarmClass: string): string {
+    if (alarmClass.trim() == 'Alarm' || alarmClass.trim() == 'Warning') {
+      return "border: 1px solid #ffffff; background: red; color: black; min-width:20%";
+    } else {
+      return "border: 1px solid #ffffff; background: #2b2929; min-width:20%";
+    }
   }
 
   onRowSelect(event: Event) {
     console.log(event);
-    console.log(this.selectedProduct2);
+    console.log(this.selectedProduct);
+    this.showBasicDialog()
   }
 
+  showBasicDialog() {
+    this.displayBasic = true;
+  }
 }

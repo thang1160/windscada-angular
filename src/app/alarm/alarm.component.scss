@@ -1,7 +1,6 @@
-.alarm{
-
+.alarm {
     margin-top: 20px;
-    
+
     ::ng-deep .p-datatable .p-datatable-thead > tr > th {
         border: 1px solid #ffffff;
         background: #2b2929;
@@ -10,9 +9,21 @@
         border: 1px solid #ffffff;
         background: #2b2929;
     }
-    ::ng-deep .p-datatable .p-datatable-tbody > tr.p-highlight > td{
+    ::ng-deep .p-datatable .p-datatable-tbody > tr.p-highlight > td {
+        color: white;
+        border: 1px solid rgb(155, 149, 149);
+    }
+}
+.dialog {
+    ::ng-deep .p-dialog-mask {
+        z-index: 9999;
+    }
+    ::ng-deep .p-dialog-header {
+        background: #7b828b !important;
+        padding: 0;
+    }
+    ::ng-deep .p-dialog-content {
+        background: white !important;
         color: black;
-        background-color: white;
-        border: 1px solid black;
     }
 }

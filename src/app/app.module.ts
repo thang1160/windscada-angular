@@ -9,19 +9,26 @@ import { PerformanceTrendComponent } from './performance-trend/performance-trend
 import { AlarmComponent } from './alarm/alarm.component';
 import { ButtonModule } from 'primeng/button';
 import { PerformanceTrendService } from './service/performance-trend.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogModule } from 'primeng/dialog';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     PerformanceTrendComponent,
-    AlarmComponent
+    AlarmComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     TableModule,
     ButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    DialogModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     PerformanceTrendService
