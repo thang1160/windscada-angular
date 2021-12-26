@@ -12,12 +12,16 @@ import { PerformanceTrendService } from './service/performance-trend.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogModule } from 'primeng/dialog';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ComponentWrapperComponent } from './component-wrapper/component-wrapper.component';
+import { DropdownModule } from 'primeng/dropdown';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     PerformanceTrendComponent,
     AlarmComponent,
+    ComponentWrapperComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,10 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     DialogModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    DropdownModule,
+    ButtonModule
   ],
   providers: [
     PerformanceTrendService
