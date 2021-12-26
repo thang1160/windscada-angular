@@ -1,3 +1,21 @@
-<div style="width: 80vw; background-color: white;">
-    <app-performance-trend></app-performance-trend>
+<div class="row">
+    <div class="col-3" height="400">
+        <app-component-wrapper title="Turbine Status">
+        </app-component-wrapper>
+    </div>
+    <div class="col-9" style="width: 80vw;" height="400">
+        <app-component-wrapper title="Plant View-Trend">
+            <div style="background-color: #232323;">
+                <app-performance-trend></app-performance-trend>
+            </div>
+        </app-component-wrapper>
+    </div>
+    <div class="col-3 mt-1" height="400">
+        <app-component-wrapper title="Key Performance Indicators">
+        </app-component-wrapper>
+    </div>
+    <div class="col-9 mt-1" style="width: 80vw;" height="400">
+        <app-component-wrapper title="Site Alarms">
+        </app-component-wrapper>
+    </div>
 </div>

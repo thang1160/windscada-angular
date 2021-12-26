@@ -8,12 +8,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PerformanceTrendComponent } from './performance-trend/performance-trend.component';
 import { PerformanceTrendService } from './service/performance-trend.service';
+import { ComponentWrapperComponent } from './component-wrapper/component-wrapper.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PerformanceTrendComponent
+    PerformanceTrendComponent,
+    ComponentWrapperComponent
   ],
   imports: [
     BrowserModule,

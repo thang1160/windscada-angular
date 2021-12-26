@@ -66,7 +66,6 @@ export class PerformanceTrendComponent implements OnInit, AfterViewInit, OnDestr
     type: 'line',
     data: this.data,
     options: {
-      responsive: true,
       interaction: {
         mode: 'index',
         intersect: false,
@@ -103,6 +102,11 @@ export class PerformanceTrendComponent implements OnInit, AfterViewInit, OnDestr
           max: 10,
           ticks: {
             color: Utils.transparentize(Utils.CHART_COLORS.yellow, 0.5),
+          },
+          grid: {
+            color: Utils.transparentize(Utils.CHART_COLORS.yellow, 0.5),
+            borderColor: Utils.transparentize(Utils.CHART_COLORS.yellow, 0.5),
+            // tickColor: 'grey'
           }
         },
         y1: {
@@ -113,6 +117,11 @@ export class PerformanceTrendComponent implements OnInit, AfterViewInit, OnDestr
           max: 22000,
           ticks: {
             color: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
+          },
+          grid: {
+            color: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
+            borderColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
+            // tickColor: 'grey'
           }
         },
         y2: {
@@ -123,6 +132,11 @@ export class PerformanceTrendComponent implements OnInit, AfterViewInit, OnDestr
           max: 60,
           ticks: {
             color: Utils.transparentize(Utils.CHART_COLORS.orange, 0.5),
+          },
+          grid: {
+            color: Utils.transparentize(Utils.CHART_COLORS.orange, 0.5),
+            borderColor: Utils.transparentize(Utils.CHART_COLORS.orange, 0.5),
+            // tickColor: 'grey'
           }
         },
         y3: {
@@ -133,10 +147,28 @@ export class PerformanceTrendComponent implements OnInit, AfterViewInit, OnDestr
           max: 120,
           ticks: {
             color: Utils.transparentize(Utils.CHART_COLORS.purple, 0.5),
+          },
+          grid: {
+            color: Utils.transparentize(Utils.CHART_COLORS.purple, 0.5),
+            borderColor: Utils.transparentize(Utils.CHART_COLORS.purple, 0.5),
+            // tickColor: 'grey'
           }
         },
       }
     },
+    plugins: [
+      {
+        id: 'custom_canvas_background_color',
+        beforeDraw: (chart: any) => {
+          const ctx: CanvasRenderingContext2D = chart.canvas.getContext('2d');
+          ctx.save();
+          ctx.globalCompositeOperation = 'destination-over';
+          ctx.fillStyle = '#141414';
+          ctx.fillRect(0, 0, chart.width, chart.height);
+          ctx.restore();
+        }
+      }
+    ]
   };
 
   myChart?: Chart = undefined;
