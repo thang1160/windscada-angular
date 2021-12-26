@@ -1,1 +1,9 @@
-<canvas #myChart width="400" height="400"></canvas>
+<div class="d-flex flex-row-reverse">
+    <p-dropdown [style]="{width: '200px'}" class="m-2" [options]="dayOption" (onChange)="onChange($event)"
+        optionValue="value" optionLabel="name"></p-dropdown>
+    <button pButton style="width: 200px;" class="p-button-secondary m-2" *ngIf="observe?.closed" (onClick)="resume()"
+        label="Resume"></button>
+    <button pButton style="width: 200px;" class="p-button-secondary m-2" *ngIf="!observe?.closed"
+        (onClick)="observe?.unsubscribe()" label="Pause"></button>
+</div>
+<canvas #myChart style="width: 80vw;" height="400"></canvas>
