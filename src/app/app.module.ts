@@ -1,4 +1,5 @@
 import { TableModule } from 'primeng/table';
+import { DropdownModule } from 'primeng/dropdown';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,7 +14,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DialogModule } from 'primeng/dialog';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentWrapperComponent } from './component-wrapper/component-wrapper.component';
-import { DropdownModule } from 'primeng/dropdown';
 
 
 @NgModule({

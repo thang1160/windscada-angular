@@ -10,7 +10,8 @@ import { AlarmServices } from '../service/alarm.service';
 export class AlarmComponent {
 
 
-  public cars = [];
+  public alarms = new Array;
+  public countAlarms = 0;
   public searchTagName: string = "";
 
   displayBasic: boolean = false;
@@ -23,22 +24,57 @@ export class AlarmComponent {
   ngOnInit(): void {
     this.alarmServices.getAlarms("").subscribe(x => {
       console.log(x)
-      this.cars = x;
+      this.alarms = x;
     })
   }
 
   search() {
     this.alarmServices.getAlarms(this.searchTagName).subscribe(x => {
       console.log(x)
-      this.cars = x;
+      this.alarms = x;
     })
   }
 
-  redNotice(alarmClass: string): string {
-    if (alarmClass.trim() == 'Alarm' || alarmClass.trim() == 'Warning') {
-      return "border: 1px solid #ffffff; background: red; color: black; min-width:20%";
+  countAlarm(alarms: Array<any>) {
+    alarms.forEach(e => {
+      if ((e.alarm_class.trim() == 'Alarm' || e.alarm_class.trim() == 'Warning') && e.account_id == null) {
+        this.countAlarms += 1;
+      }
+    });
+  }
+
+  setAlarmOff() {
+    if (this.selectedProduct.account_id == null &&
+      (this.selectedProduct.alarm_class.trim() == 'Alarm'
+        || this.selectedProduct.alarm_class.trim() == 'Warning')) {
+      const data = {
+        ids: this.selectedProduct.turbine_log_id + ''
+      }
+      this.alarmServices.putAlarmsOff(data).subscribe(x => {
+        this.search();
+      })
+    }
+  }
+
+  setAllAlarmOff() {
+    const data = {
+      ids: this.alarms.map(e => {
+        if (e.account_id == null &&
+          (e.alarm_class.trim() == 'Alarm' ||
+            e.alarm_class.trim() == 'Warning')) return e.turbine_log_id
+      }).join(",")
+    }
+    console.log(data);
+    this.alarmServices.putAlarmsOff(data).subscribe(x => {
+      this.search();
+    })
+  }
+
+  redNotice(alarms: any): string {
+    if ((alarms.alarm_class.trim() == 'Alarm' || alarms.alarm_class.trim() == 'Warning') && alarms.account_id == null) {
+      return "background: red; color: black; ";
     } else {
-      return "border: 1px solid #ffffff; background: #2b2929; min-width:20%";
+      return "background: #2b2929; ";
     }
   }
 

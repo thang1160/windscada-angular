@@ -12,4 +12,8 @@ export class AlarmServices {
   getAlarms(tag_name: string): Observable<any> {
     return this._http.get("/windscada/api/v1/alarms?name=" + tag_name);
   }
+
+  putAlarmsOff(data: any): Observable<any> {
+    return this._http.put("/windscada/api/v1/alarms-off", data);
+  }
 }
