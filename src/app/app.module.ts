@@ -40,7 +40,8 @@ import { KpiComponent } from './kpi/kpi.component';
     ButtonModule
   ],
   providers: [
-    PerformanceTrendService
+    PerformanceTrendService,
+    PerformanceTrendComponent
   ],
   bootstrap: [AppComponent]
 })

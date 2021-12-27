@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
+import { webSocket } from 'rxjs/webSocket';
 import { AlarmServices } from '../service/alarm.service';
 @Component({
   selector: 'app-alarm',
@@ -20,6 +21,10 @@ export class AlarmComponent {
 
   constructor(public dialog: MatDialog, public alarmServices: AlarmServices) { }
 
+  socket = webSocket({
+    url: "ws://localhost:8889/performance-trend",
+    deserializer: (e) => e.data.text()
+  });
 
   ngOnInit(): void {
     this.alarmServices.getAlarms("").subscribe(x => {
