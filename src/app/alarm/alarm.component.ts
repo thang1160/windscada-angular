@@ -57,14 +57,17 @@ export class AlarmComponent {
   }
 
   setAllAlarmOff() {
+    let a : any= []
+    this.alarms.forEach(e => {
+      if ((e.alarm_class.trim() == 'Alarm' || e.alarm_class.trim() == 'Warning') && e.account_id == null) {
+        a.push(e.turbine_log_id)
+      }
+    });
+    let temp = a.join(",");
+    console.log(temp);
     const data = {
-      ids: this.alarms.map(e => {
-        if (e.account_id == null &&
-          (e.alarm_class.trim() == 'Alarm' ||
-            e.alarm_class.trim() == 'Warning')) return e.turbine_log_id
-      }).join(",")
+      ids: temp
     }
-    console.log(data);
     this.alarmServices.putAlarmsOff(data).subscribe(x => {
       this.search();
     })

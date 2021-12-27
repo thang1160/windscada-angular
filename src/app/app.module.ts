@@ -14,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DialogModule } from 'primeng/dialog';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentWrapperComponent } from './component-wrapper/component-wrapper.component';
+import { KpiComponent } from './kpi/kpi.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ComponentWrapperComponent } from './component-wrapper/component-wrapper
     AppComponent,
     PerformanceTrendComponent,
     AlarmComponent,
-    ComponentWrapperComponent
+    ComponentWrapperComponent,
+    KpiComponent
   ],
   imports: [
     BrowserModule,

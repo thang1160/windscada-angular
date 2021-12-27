@@ -17,7 +17,7 @@
         <div class="">
             <p-table responsiveLayout="scroll" [value]="alarms" [scrollable]="true" scrollHeight="400px"
                 selectionMode="single" [(selection)]="selectedProduct" dataKey="turbine_log_id"
-                responsiveLayout="scroll">
+                responsiveLayout="scroll" [virtualScroll]="true" [virtualRowHeight]="40" [rows]="100">
                 <ng-template pTemplate="header">
                     <tr>
                         <th style="width: 200px;">Time</th>
