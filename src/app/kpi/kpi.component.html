@@ -1,18 +1,24 @@
 <div class="kpi">
-    <div class="kpi-div">
-        <div>Power</div>
-        <div class="kpi-value">{{power}} kW</div>
-    </div>
-    <div class="kpi-div">
-        <div>Wind Speed</div>
-        <div class="kpi-value">{{wind}} m/s</div>
-    </div>
-    <div class="kpi-div">
-        <div>Capital Factor(MTD)</div>
-        <div class="kpi-value">{{cf}} %</div>
-    </div>
-    <div class="kpi-div">
-        <div>Availability</div>
-        <div class="kpi-value">{{avai}} %</div>
-    </div>
+    <table style="width: 100%;">
+        <tr class="kpi-row">
+            <td>Power</td>
+            <td class="kpi-value">{{power}}</td>
+            <td>kW</td>
+        </tr>
+        <tr class="kpi-row">
+            <td>Wind Speed</td>
+            <td class="kpi-value">{{wind}}</td>
+            <td>m/s</td>
+        </tr>
+        <tr class="kpi-row">
+            <td>Capital Factor(MTD)</td>
+            <td class="kpi-value">{{cf}}</td>
+            <td>%</td>
+        </tr>
+        <tr class="kpi-row">
+            <td>Availability(MTD)</td>
+            <td class="kpi-value">{{avai}}</td>
+            <td>%</td>
+        </tr>
+    </table>
 </div>

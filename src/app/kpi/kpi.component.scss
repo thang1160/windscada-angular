@@ -4,6 +4,9 @@
         display: flex;
     }
     .kpi-value {
-        margin-left: auto;
+        text-align: right;
+    }
+    .kpi-row {
+        border-bottom: 1px solid gray;
     }
 }
