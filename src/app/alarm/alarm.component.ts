@@ -32,7 +32,7 @@ export class AlarmComponent implements AfterViewInit, OnDestroy {
   }
 
   socket = webSocket({
-    url: "ws://localhost:8889/alarms",
+    url: "ws://localhost:8888/alarms",
     deserializer: (e) => e.data.text()
   });
 
