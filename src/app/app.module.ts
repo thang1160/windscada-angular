@@ -15,7 +15,8 @@ import { DialogModule } from 'primeng/dialog';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentWrapperComponent } from './component-wrapper/component-wrapper.component';
 import { KpiComponent } from './kpi/kpi.component';
-
+import { TurbineStatusComponent } from './turbine-status/turbine-status.component';
+import {TreeTableModule} from 'primeng/treetable';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { KpiComponent } from './kpi/kpi.component';
     PerformanceTrendComponent,
     AlarmComponent,
     ComponentWrapperComponent,
-    KpiComponent
+    KpiComponent,
+    TurbineStatusComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import { KpiComponent } from './kpi/kpi.component';
     FormsModule,
     HttpClientModule,
     DropdownModule,
-    ButtonModule
+    ButtonModule,
+    TreeTableModule
   ],
   providers: [
     PerformanceTrendService,

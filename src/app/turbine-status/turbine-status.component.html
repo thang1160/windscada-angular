@@ -1,0 +1,46 @@
+<div class="status">
+    <div class="row" >
+        <div class="col-9">
+            <p-dropdown [options]="dropDown" [(ngModel)]="dropDownSelected" optionLabel="name" optionValue="value">
+            </p-dropdown>
+        </div>
+    </div>
+    <div class="row" *ngIf="dropDownSelected == 'groups'" [style]="dropDownSelected == 'groups' ? 'display: block; overflow-y: scroll;height: 400px;' : 'display: none'">
+        <p-treeTable [value]="sites">
+            <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+                <tr>
+                    <td>
+                        <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+                        {{rowData.turbine_name}}
+                    </td>
+                    <td>{{rowData.isDeactive}}</td>
+                </tr>
+            </ng-template>
+        </p-treeTable>
+    </div>
+    <div class="row" *ngIf="dropDownSelected == 'turbines'"  [style]="dropDownSelected == 'turbines' ? 'display: block; overflow-y: scroll;height: 400px;' : 'display: none'">
+        <p-treeTable [value]="turbines">
+            <ng-template pTemplate="body" let-rowData>
+                <tr>
+                    <td>
+                        {{rowData.turbine_name}}
+                    </td>
+                    <td>{{rowData.isDeactive}}</td>
+                </tr>
+            </ng-template>
+        </p-treeTable>
+    </div>
+    <div class="row" *ngIf="dropDownSelected == 'status'"  [style]="dropDownSelected == 'status' ? 'display: block; overflow-y: scroll;height: 400px;' : 'display: none'">
+        <p-treeTable [value]="status">
+            <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+                <tr>
+                    <td>
+                        <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+                        {{rowData.turbine_name}}
+                    </td>
+                    <td>{{rowData.isDeactive}}</td>
+                </tr>
+            </ng-template>
+        </p-treeTable>
+    </div>
+</div>

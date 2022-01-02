@@ -3,7 +3,6 @@ import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { webSocket } from 'rxjs/webSocket';
-import { SiteLog } from '../class/SiteLog';
 import { TurbineLog } from '../class/TurbineLog';
 import { AlarmServices } from '../service/alarm.service';
 @Component({
@@ -32,13 +31,16 @@ export class AlarmComponent implements AfterViewInit, OnDestroy {
   }
 
   socket = webSocket({
-    url: "ws://localhost:8888/alarms",
+    url: "ws://localhost:8889/alarms",
     deserializer: (e) => e.data.text()
   });
 
   ngAfterViewInit(): void {
-    let setData = new Set();
+    this.initSocket();
+  }
 
+  initSocket() {
+    let setData = new Set();
     if (!this.observe || this.observe?.closed)
       this.observe = this.socket.subscribe((data: Promise<string>) => {
         data.then(result => {
@@ -67,9 +69,13 @@ export class AlarmComponent implements AfterViewInit, OnDestroy {
   }
 
   search() {
+    if (this.observe) {
+      this.observe.unsubscribe();
+    }
     this.alarmServices.getAlarms(this.searchTagName).subscribe(x => {
       this.alarms = x;
       this.countAlarm(this.alarms);
+      this.initSocket();
     })
   }
 
