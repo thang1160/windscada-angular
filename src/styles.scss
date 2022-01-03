@@ -1,7 +1,7 @@
 body {
   background-color: black !important;
-  width: 100vw;
-  height: 100vh;
+  max-width: 100%;
+  overflow-x: hidden;
 
   #main_wrapper {
     margin: 0px auto;
@@ -86,6 +86,7 @@ body {
         padding: 0px;
         display: none;
         position: absolute;
+        z-index: 1;
       }
 
       ul.sub-menu li {

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PerformanceTrendComponent } from './performance-trend.component';
+import { KpiComponent } from './kpi.component';
 
-describe('PerformanceTrendComponent', () => {
-  let component: PerformanceTrendComponent;
-  let fixture: ComponentFixture<PerformanceTrendComponent>;
+describe('KpiComponent', () => {
+  let component: KpiComponent;
+  let fixture: ComponentFixture<KpiComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PerformanceTrendComponent ]
+      declarations: [ KpiComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PerformanceTrendComponent);
+    fixture = TestBed.createComponent(KpiComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

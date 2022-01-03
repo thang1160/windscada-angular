@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { SiteLog } from '../class/SiteLog';
-import { PerformanceTrendComponent } from '../performance-trend/performance-trend.component';
+import { SiteLog } from 'src/app/class/SiteLog';
+import { PerformanceTrendComponent } from 'src/app/shared/performance-trend/performance-trend.component';
 
 @Component({
   selector: 'app-kpi',

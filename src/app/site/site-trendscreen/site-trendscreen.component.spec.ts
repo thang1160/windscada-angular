@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ComponentWrapperComponent } from './component-wrapper.component';
+import { SiteTrendscreenComponent } from './site-trendscreen.component';
 
-describe('ComponentWrapperComponent', () => {
-  let component: ComponentWrapperComponent;
-  let fixture: ComponentFixture<ComponentWrapperComponent>;
+describe('SiteTrendscreenComponent', () => {
+  let component: SiteTrendscreenComponent;
+  let fixture: ComponentFixture<SiteTrendscreenComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ComponentWrapperComponent ]
+      declarations: [ SiteTrendscreenComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ComponentWrapperComponent);
+    fixture = TestBed.createComponent(SiteTrendscreenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

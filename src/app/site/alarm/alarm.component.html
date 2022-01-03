@@ -5,12 +5,12 @@
         </div>
         <button style="margin-left: auto; width: 200px;" pButton pRipple type="button" label="Acknowledge All"
             (click)="setAllAlarmOff()" class="p-button-secondary p-button-sm mr-1" styleClass="p-button-sm"></button>
-        <button style="width: 200px; margin-left: 4px;" pButton pRipple type="button" label="Acknowledge" (click)="setAlarmOff()"
-            class="p-button-secondary p-button-sm" styleClass="p-button-sm"></button>
+        <button style="width: 200px; margin-left: 4px;" pButton pRipple type="button" label="Acknowledge"
+            (click)="setAlarmOff()" class="p-button-secondary p-button-sm" styleClass="p-button-sm"></button>
         <!-- <div class="p-inputgroup"> -->
         <input style="margin-left: 8px;" [(ngModel)]="searchTagName" type="text" pInputText placeholder="Keyword">
-        <button type="button" (click)="search()" pButton pRipple icon="pi pi-search" class="p-button-secondary p-button-sm"
-            styleClass="p-button-warn"></button>
+        <button type="button" (click)="search()" pButton pRipple icon="pi pi-search"
+            class="p-button-secondary p-button-sm" styleClass="p-button-warn"></button>
         <!-- </div> -->
     </div>
     <div class="">
@@ -20,16 +20,17 @@
                 responsiveLayout="scroll" [virtualScroll]="true" [virtualRowHeight]="40" [rows]="100">
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="width: 200px;">Time</th>
-                        <th style="width: 200px;">Signal_Name</th>
-                        <th style="width: 100px;">OPC_Tag_Name</th>
-                        <th style="width: 100px;">Alarm_Class</th>
-                        <th style="width: 200px;">Description</th>
+                        <th scope="col" style="width: 200px;">Time</th>
+                        <th scope="col" style="width: 200px;">Signal_Name</th>
+                        <th scope="col" style="width: 100px;">OPC_Tag_Name</th>
+                        <th scope="col" style="width: 100px;">Alarm_Class</th>
+                        <th scope="col" style="width: 200px;">Description</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-alarm>
                     <tr [pSelectableRow]=alarm>
-                        <td style="width: 200px; font-weight: 900;" (click)="onRowSelect($event)" [style]="redNotice(alarm)">
+                        <td style="width: 200px; font-weight: 900;" (click)="onRowSelect($event)"
+                            [style]="redNotice(alarm)">
                             {{alarm.log_time}}</td>
                         <td style="width: 200px;" [style]="redNotice(alarm)">{{alarm.signal_name}}</td>
                         <td style="width: 100px;" [style]="redNotice(alarm)">{{alarm.opc_tag_name}}</td>

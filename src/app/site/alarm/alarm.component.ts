@@ -1,11 +1,10 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { webSocket } from 'rxjs/webSocket';
-import { SiteLog } from '../class/SiteLog';
-import { TurbineLog } from '../class/TurbineLog';
-import { AlarmServices } from '../service/alarm.service';
+import { TurbineLog } from 'src/app/class/TurbineLog';
+import { AlarmServices } from 'src/app/service/alarm.service';
 @Component({
   selector: 'app-alarm',
   templateUrl: './alarm.component.html',

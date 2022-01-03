@@ -1,10 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { Chart, ChartDataset, registerables } from 'chart.js';
-import * as Utils from '../shared/chartjs/Utils';
+// import Utils from shared
+import * as Utils from 'src/app/shared/chartjs/Utils';
 import { webSocket } from "rxjs/webSocket";
 import { Subscription } from 'rxjs';
-import { SiteLog } from '../class/SiteLog';
-import { PerformanceTrendService } from '../service/performance-trend.service';
+import { SiteLog } from 'src/app/class/SiteLog';
+import { PerformanceTrendService } from 'src/app/service/performance-trend.service';
 
 @Component({
   selector: 'app-performance-trend',
