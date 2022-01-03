@@ -12,7 +12,7 @@ export class TurbineStatusComponent implements OnInit, AfterViewInit, OnDestroy 
 
 
   socket = webSocket({
-    url: "ws://localhost:8889/turbine-status",
+    url: "ws://localhost:8888/turbine-status",
     deserializer: (e) => e.data.text()
   });
 
