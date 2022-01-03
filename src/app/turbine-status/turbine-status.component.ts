@@ -187,12 +187,12 @@ export class TurbineStatusComponent implements OnInit, AfterViewInit, OnDestroy 
   groupByStatus(dataOnline: any[], dataRepair: any[]) {
     this.status = [
       {
-        data: { turbine_name: 'Online (' + dataOnline.length + ')', isDeactive: '' },
+        data: { turbine_name: 'Online (' + dataOnline.length + ')', isDeactive: '0' },
         expanded: true,
         children: dataOnline
       },
       {
-        data: { turbine_name: 'Repair (' + dataRepair.length + ')', isDeactive: '' },
+        data: { turbine_name: 'Repair (' + dataRepair.length + ')', isDeactive: '1' },
         expanded: true,
         children: dataRepair
       }
@@ -201,7 +201,7 @@ export class TurbineStatusComponent implements OnInit, AfterViewInit, OnDestroy 
 
   groupBySite(data: any[]) {
     this.sites = [{
-      data: { turbine_name: 'By Groups (' + data.length + ')', isDeactive: '' },
+      data: { turbine_name: 'Group Tây Nguyên WindPower (' + data.length + ')', isDeactive: '' },
       expanded: true,
       children: data
     }]

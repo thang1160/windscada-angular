@@ -1,24 +1,38 @@
 <div class="status">
-    <div class="row" >
+    <div class="row">
         <div class="col-9">
             <p-dropdown [options]="dropDown" [(ngModel)]="dropDownSelected" optionLabel="name" optionValue="value">
             </p-dropdown>
         </div>
     </div>
-    <div class="row" *ngIf="dropDownSelected == 'groups'" [style]="dropDownSelected == 'groups' ? 'display: block; overflow-y: scroll;height: 400px;' : 'display: none'">
+    <div class="row" *ngIf="dropDownSelected == 'groups'"
+        [style]="dropDownSelected == 'groups' ? 'display: block; overflow-y: scroll;height: 400px;' : 'display: none'">
         <p-treeTable [value]="sites">
             <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
                 <tr>
                     <td>
                         <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+                        <span *ngIf="rowData.isDeactive == '0'"><svg xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em"
+                                height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48">
+                                <path d="M24 33a9 9 0 1 0 0-18a9 9 0 0 0 0 18z" fill="green" stroke="green"
+                                    stroke-width="4" />
+                            </svg></span>
+                        <span *ngIf="rowData.isDeactive == '1'"><svg xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em"
+                                height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48">
+                                <path d="M24 33a9 9 0 1 0 0-18a9 9 0 0 0 0 18z" fill="red" stroke="red"
+                                    stroke-width="4" />
+                            </svg></span>
                         {{rowData.turbine_name}}
                     </td>
-                    <td>{{rowData.isDeactive}}</td>
+                    <!-- <td>{{rowData.isDeactive}}</td> -->
                 </tr>
             </ng-template>
         </p-treeTable>
     </div>
-    <div class="row" *ngIf="dropDownSelected == 'turbines'"  [style]="dropDownSelected == 'turbines' ? 'display: block; overflow-y: scroll;height: 400px;' : 'display: none'">
+    <div class="row" *ngIf="dropDownSelected == 'turbines'"
+        [style]="dropDownSelected == 'turbines' ? 'display: block; overflow-y: scroll;height: 400px;' : 'display: none'">
         <p-treeTable [value]="turbines">
             <ng-template pTemplate="body" let-rowData>
                 <tr>
@@ -30,15 +44,32 @@
             </ng-template>
         </p-treeTable>
     </div>
-    <div class="row" *ngIf="dropDownSelected == 'status'"  [style]="dropDownSelected == 'status' ? 'display: block; overflow-y: scroll;height: 400px;' : 'display: none'">
+    <div class="row" *ngIf="dropDownSelected == 'status'"
+        [style]="dropDownSelected == 'status' ? 'display: block; overflow-y: scroll;height: 400px;' : 'display: none'">
         <p-treeTable [value]="status">
             <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
                 <tr>
-                    <td>
+                    <td *ngIf="rowData.isDeactive == '0'">
                         <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+                        <span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" width="1em" height="1em"
+                                preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48">
+                                <path d="M24 33a9 9 0 1 0 0-18a9 9 0 0 0 0 18z" fill="green" stroke="green"
+                                    stroke-width="4" />
+                            </svg></span>
                         {{rowData.turbine_name}}
                     </td>
-                    <td>{{rowData.isDeactive}}</td>
+                    <td *ngIf="rowData.isDeactive == '1'">
+                        <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+                        <span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" width="1em" height="1em"
+                                preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48">
+                                <path d="M24 33a9 9 0 1 0 0-18a9 9 0 0 0 0 18z" fill="red" stroke="red"
+                                    stroke-width="4" />
+                            </svg></span>
+                        {{rowData.turbine_name}}
+                    </td>
+                    <!-- <td>{{rowData.isDeactive}}</td> -->
                 </tr>
             </ng-template>
         </p-treeTable>
