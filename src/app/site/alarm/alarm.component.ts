@@ -21,12 +21,16 @@ export class AlarmComponent implements AfterViewInit, OnDestroy {
   public selectedProduct: any
   dialogRef: any;
   observe: Subscription | undefined;
+  observe1: Subscription | undefined;
 
   constructor(public dialog: MatDialog, public alarmServices: AlarmServices) { }
 
   ngOnDestroy(): void {
     if (this.observe) {
       this.observe.unsubscribe();
+    }
+    if (this.observe1) {
+      this.observe1.unsubscribe();
     }
   }
 
@@ -35,8 +39,15 @@ export class AlarmComponent implements AfterViewInit, OnDestroy {
     deserializer: (e) => e.data.text()
   });
 
+  socket1 = webSocket({
+    url: "ws://localhost:8889/alarms-warning",
+    deserializer: (e) => e.data.text()
+  });
+
+
   ngAfterViewInit(): void {
     this.initSocket();
+    this.initSocket1();
   }
 
   initSocket() {
@@ -55,15 +66,25 @@ export class AlarmComponent implements AfterViewInit, OnDestroy {
             if (!setData.has(item.turbine_log_id)) {
               setData.add(item.turbine_log_id);
               this.alarms = [item, ...this.alarms];
-              this.countAlarm(this.alarms);
             }
           }
         }).catch(x => console.error(x))
       });
   }
 
+  initSocket1() {
+    if (!this.observe1 || this.observe1?.closed)
+      this.observe1 = this.socket1.subscribe((data: Promise<string>) => {
+        data.then(result => {
+          let object = JSON.parse(result);
+          this.countAlarms = object[0].count_warning;
+          console.log(this.countAlarms);
+        }).catch(x => console.error(x))
+      });
+  }
+
   ngOnInit(): void {
-    this.alarmServices.getAlarms("").subscribe(x => {
+    this.alarmServices.getAlarms("", 0).subscribe(x => {
       this.alarms = x;
     })
   }
@@ -72,20 +93,10 @@ export class AlarmComponent implements AfterViewInit, OnDestroy {
     if (this.observe) {
       this.observe.unsubscribe();
     }
-    this.alarmServices.getAlarms(this.searchTagName).subscribe(x => {
+    this.alarmServices.getAlarms(this.searchTagName, 0).subscribe(x => {
       this.alarms = x;
-      this.countAlarm(this.alarms);
       this.initSocket();
     })
-  }
-
-  countAlarm(alarms: TurbineLog[]) {
-    alarms.forEach(e => {
-      console.log(e.alarm_class);
-      if ((e.alarm_class.trim().toLowerCase() == 'alarm' || e.alarm_class.trim().toLowerCase() == 'warning') && e.account_id == null) {
-        this.countAlarms += 1;
-      }
-    });
   }
 
   setAlarmOff() {
@@ -104,7 +115,8 @@ export class AlarmComponent implements AfterViewInit, OnDestroy {
   setAllAlarmOff() {
     let a: any = []
     this.alarms.forEach(e => {
-      if ((e.alarm_class.trim().toLowerCase() == 'alarm' || e.alarm_class.trim().toLowerCase() == 'warning') && e.account_id == null) {
+      if ((e.alarm_class.trim().toLowerCase() == 'alarm' ||
+        e.alarm_class.trim().toLowerCase() == 'warning') && e.account_id == null) {
         a.push(e.turbine_log_id)
       }
     });
@@ -118,7 +130,8 @@ export class AlarmComponent implements AfterViewInit, OnDestroy {
   }
 
   redNotice(alarms: any): string {
-    if ((alarms.alarm_class.trim().toLowerCase() == 'alarm' || alarms.alarm_class.trim().toLowerCase() == 'warning') && alarms.account_id == null) {
+    if ((alarms.alarm_class.trim().toLowerCase() == 'alarm' ||
+      alarms.alarm_class.trim().toLowerCase() == 'warning') && alarms.account_id == null) {
       return "background: red; color: black; ";
     } else {
       return "background: #2b2929; ";
