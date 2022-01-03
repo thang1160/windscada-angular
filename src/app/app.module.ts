@@ -17,6 +17,7 @@ import { ComponentWrapperComponent } from './component-wrapper/component-wrapper
 import { KpiComponent } from './kpi/kpi.component';
 import { TurbineStatusComponent } from './turbine-status/turbine-status.component';
 import {TreeTableModule} from 'primeng/treetable';
+import { TurbineAlarmComponent } from './turbine-alarm/turbine-alarm.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {TreeTableModule} from 'primeng/treetable';
     AlarmComponent,
     ComponentWrapperComponent,
     KpiComponent,
-    TurbineStatusComponent
+    TurbineStatusComponent,
+    TurbineAlarmComponent
   ],
   imports: [
     BrowserModule,
