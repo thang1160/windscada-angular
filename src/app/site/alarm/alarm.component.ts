@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
@@ -10,7 +10,7 @@ import { AlarmServices } from 'src/app/service/alarm.service';
   templateUrl: './alarm.component.html',
   styleUrls: ['./alarm.component.scss']
 })
-export class AlarmComponent implements AfterViewInit, OnDestroy {
+export class AlarmComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   public alarms: TurbineLog[] = [];
@@ -22,6 +22,9 @@ export class AlarmComponent implements AfterViewInit, OnDestroy {
   dialogRef: any;
   observe: Subscription | undefined;
   observe1: Subscription | undefined;
+
+  public turbineSeleted: any;
+  public turbine: any = []
 
   constructor(public dialog: MatDialog, public alarmServices: AlarmServices) { }
 
@@ -84,6 +87,48 @@ export class AlarmComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.turbine = [
+      {
+        'label': 'All',
+        'value': 0
+      }, {
+        'label': 'Turbine 1',
+        'value': 1
+      }, {
+        'label': 'Turbine 2',
+        'value': 2
+      }, {
+        'label': 'Turbine 3',
+        'value': 3
+      }, {
+        'label': 'Turbine 4',
+        'value': 4
+      }, {
+        'label': 'Turbine 5',
+        'value': 5
+      }, {
+        'label': 'Turbine 6',
+        'value': 6
+      }, {
+        'label': 'Turbine 7',
+        'value': 7
+      }, {
+        'label': 'Turbine 8',
+        'value': 8
+      }, {
+        'label': 'Turbine 9',
+        'value': 9
+      }, {
+        'label': 'Turbine 10',
+        'value': 10
+      }, {
+        'label': 'Turbine 11',
+        'value': 11
+      }, {
+        'label': 'Turbine 12',
+        'value': 12
+      },
+    ]
     this.alarmServices.getAlarms("", 0).subscribe(x => {
       this.alarms = x;
     })

@@ -3,15 +3,15 @@
         <div style="width: 200px;">
             {{countAlarms}} Alarm
         </div>
+         <p-dropdown [options]="turbine" [(ngModel)]="turbineSeleted" optionLabel="label" optionValue="value">
+            </p-dropdown>
         <button style="margin-left: auto; width: 200px;" pButton pRipple type="button" label="Acknowledge All"
             (click)="setAllAlarmOff()" class="p-button-secondary p-button-sm mr-1" styleClass="p-button-sm"></button>
         <button style="width: 200px; margin-left: 4px;" pButton pRipple type="button" label="Acknowledge"
             (click)="setAlarmOff()" class="p-button-secondary p-button-sm" styleClass="p-button-sm"></button>
-        <!-- <div class="p-inputgroup"> -->
         <input style="margin-left: 8px;" [(ngModel)]="searchTagName" type="text" pInputText placeholder="Keyword">
         <button type="button" (click)="search()" pButton pRipple icon="pi pi-search"
             class="p-button-secondary p-button-sm" styleClass="p-button-warn"></button>
-        <!-- </div> -->
     </div>
     <div class="">
         <div class="">

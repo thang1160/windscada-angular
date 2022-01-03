@@ -14,6 +14,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { SiteBarGraphComponent } from './site-bar-graph/site-bar-graph.component';
 import { BarGraphComponent } from './site-bar-graph/bar-graph/bar-graph.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { BarGraphComponent } from './site-bar-graph/bar-graph/bar-graph.componen
     ButtonModule,
     RippleModule,
     InputTextModule,
+    DropdownModule,
     FormsModule,
   ]
 })
