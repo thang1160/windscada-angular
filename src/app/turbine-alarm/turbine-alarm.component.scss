@@ -1,0 +1,33 @@
+.alarm {
+    margin-top: 20px;
+
+    ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+        border: 1px solid #ffffff;
+        background: #2b2929;
+        padding: 5px;
+    }
+    ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+        border: 1px solid #ffffff;
+        background: #2b2929;
+        padding: 5px;
+    }
+    ::ng-deep .p-datatable .p-datatable-tbody > tr.p-highlight > td {
+        color: white;
+        font-weight: bolder;
+        border: 1px solid #ffffff;
+        background: #2b292900 !important;
+    }
+}
+.dialog {
+    ::ng-deep .p-dialog-mask {
+        z-index: 9999;
+    }
+    ::ng-deep .p-dialog-header {
+        background: #7b828b !important;
+        padding: 0;
+    }
+    ::ng-deep .p-dialog-content {
+        background: white !important;
+        color: black;
+    }
+}
