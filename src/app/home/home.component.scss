@@ -1,0 +1,11 @@
+// $height: 100vh - 130px;
+
+#top-left,
+#top-right {
+  height: calc((100vh - 130px) * 3 / 5);
+}
+
+#bottom-left,
+#bottom-right {
+  height: calc((100vh - 130px) * 2 / 5);
+}

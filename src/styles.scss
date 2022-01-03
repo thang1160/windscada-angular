@@ -1,3 +1,18 @@
+:root {
+  --top-height: calc((100vh - 160px) * 3 / 5);
+  --bottom-height: calc((100vh - 160px) * 2 / 5);
+}
+
+#top-left,
+#top-right {
+  height: var(--top-height);
+}
+
+#bottom-left,
+#bottom-right {
+  height: var(--bottom-height);
+}
+
 body {
   background-color: black !important;
   max-width: 100%;
@@ -11,7 +26,7 @@ body {
 
     #banner {
       background: #000000;
-      height: auto;
+      height: 130px;
       width: 100%;
       img {
         width: 100%;

@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { TreeTableModule } from 'primeng/treetable';
 import { TurbineStatusComponent } from './turbine-status/turbine-status.component';
+import { ButtonModule } from 'primeng/button';
 
 
 
@@ -21,7 +22,8 @@ import { TurbineStatusComponent } from './turbine-status/turbine-status.componen
     CommonModule,
     DropdownModule,
     FormsModule,
-    TreeTableModule
+    TreeTableModule,
+    ButtonModule
   ],
   exports: [
     ComponentWrapperComponent,

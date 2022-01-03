@@ -12,13 +12,17 @@ import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
+import { SiteBarGraphComponent } from './site-bar-graph/site-bar-graph.component';
+import { BarGraphComponent } from './site-bar-graph/bar-graph/bar-graph.component';
 
 
 @NgModule({
   declarations: [
     SiteTrendscreenComponent,
     SiteOverviewComponent,
-    AlarmComponent
+    AlarmComponent,
+    SiteBarGraphComponent,
+    BarGraphComponent
   ],
   imports: [
     CommonModule,
