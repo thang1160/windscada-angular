@@ -6,5 +6,7 @@ export interface TurbineLog {
     turbine_id: number,
     account_id: number,
     value: string,
-    alarm_class: string
+    alarm_class: string,
+    turbine_name: string,
+    isDeactive: string
 }

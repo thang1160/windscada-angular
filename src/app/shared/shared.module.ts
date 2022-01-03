@@ -5,6 +5,8 @@ import { KpiComponent } from './kpi/kpi.component';
 import { PerformanceTrendComponent } from './performance-trend/performance-trend.component';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
+import { TreeTableModule } from 'primeng/treetable';
+import { TurbineStatusComponent } from './turbine-status/turbine-status.component';
 
 
 
@@ -12,17 +14,20 @@ import { DropdownModule } from 'primeng/dropdown';
   declarations: [
     ComponentWrapperComponent,
     KpiComponent,
-    PerformanceTrendComponent
+    PerformanceTrendComponent,
+    TurbineStatusComponent
   ],
   imports: [
     CommonModule,
     DropdownModule,
-    FormsModule
+    FormsModule,
+    TreeTableModule
   ],
   exports: [
     ComponentWrapperComponent,
     KpiComponent,
-    PerformanceTrendComponent
+    PerformanceTrendComponent,
+    TurbineStatusComponent
   ]
 })
 export class SharedModule { }

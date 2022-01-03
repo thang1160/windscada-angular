@@ -36,8 +36,11 @@ export class AlarmComponent implements AfterViewInit, OnDestroy {
   });
 
   ngAfterViewInit(): void {
-    let setData = new Set();
+    this.initSocket();
+  }
 
+  initSocket() {
+    let setData = new Set();
     if (!this.observe || this.observe?.closed)
       this.observe = this.socket.subscribe((data: Promise<string>) => {
         data.then(result => {
@@ -66,9 +69,13 @@ export class AlarmComponent implements AfterViewInit, OnDestroy {
   }
 
   search() {
+    if (this.observe) {
+      this.observe.unsubscribe();
+    }
     this.alarmServices.getAlarms(this.searchTagName).subscribe(x => {
       this.alarms = x;
       this.countAlarm(this.alarms);
+      this.initSocket();
     })
   }
 
