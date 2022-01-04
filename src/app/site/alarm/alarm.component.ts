@@ -23,7 +23,7 @@ export class AlarmComponent implements OnInit, AfterViewInit, OnDestroy {
   observe: Subscription | undefined;
   observe1: Subscription | undefined;
 
-  public turbineSeleted: any;
+  public turbineSeleted: number = 0;
   public turbine: any = []
 
   constructor(public dialog: MatDialog, public alarmServices: AlarmServices) { }
@@ -37,13 +37,18 @@ export class AlarmComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  onChangeTurbine() {
+    console.log(this.turbineSeleted);
+    this.search(this.turbineSeleted)
+  }
+
   socket = webSocket({
-    url: "ws://localhost:8889/alarms",
+    url: "ws://localhost:8888/alarms",
     deserializer: (e) => e.data.text()
   });
 
   socket1 = webSocket({
-    url: "ws://localhost:8889/alarms-warning",
+    url: "ws://localhost:8888/alarms-warning",
     deserializer: (e) => e.data.text()
   });
 
@@ -66,9 +71,20 @@ export class AlarmComponent implements OnInit, AfterViewInit, OnDestroy {
           });
           let array: TurbineLog[] = JSON.parse(result);
           for (const item of array) {
-            if (!setData.has(item.turbine_log_id)) {
-              setData.add(item.turbine_log_id);
-              this.alarms = [item, ...this.alarms];
+            console.log(item);
+            if (this.turbineSeleted == 0) {
+              if (!setData.has(item.turbine_log_id)) {
+                setData.add(item.turbine_log_id);
+                this.alarms = [item, ...this.alarms];
+              }
+            }
+            else {
+              if (item.turbine_id == this.turbineSeleted) {
+                if (!setData.has(item.turbine_log_id)) {
+                  setData.add(item.turbine_log_id);
+                  this.alarms = [item, ...this.alarms];
+                }
+              }
             }
           }
         }).catch(x => console.error(x))
@@ -134,11 +150,11 @@ export class AlarmComponent implements OnInit, AfterViewInit, OnDestroy {
     })
   }
 
-  search() {
+  search(turbine_id: number) {
     if (this.observe) {
       this.observe.unsubscribe();
     }
-    this.alarmServices.getAlarms(this.searchTagName, 0).subscribe(x => {
+    this.alarmServices.getAlarms(this.searchTagName, turbine_id).subscribe(x => {
       this.alarms = x;
       this.initSocket();
     })
@@ -152,7 +168,7 @@ export class AlarmComponent implements OnInit, AfterViewInit, OnDestroy {
         ids: this.selectedProduct.turbine_log_id + ''
       }
       this.alarmServices.putAlarmsOff(data).subscribe(x => {
-        this.search();
+        this.search(this.turbineSeleted);
       })
     }
   }
@@ -170,7 +186,7 @@ export class AlarmComponent implements OnInit, AfterViewInit, OnDestroy {
       ids: temp
     }
     this.alarmServices.putAlarmsOff(data).subscribe(x => {
-      this.search();
+      this.search(this.turbineSeleted);
     })
   }
 
