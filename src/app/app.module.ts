@@ -12,6 +12,7 @@ import { DialogModule } from 'primeng/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeModule } from './home/home.module';
 import { SiteModule } from './site/site.module';
+import { TurbineModule } from './turbine/turbine.module';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { SiteModule } from './site/site.module';
     FormsModule,
     DropdownModule,
     HomeModule,
-    SiteModule
+    SiteModule,
+    TurbineModule
   ],
   providers: [
     // PerformanceTrendService,

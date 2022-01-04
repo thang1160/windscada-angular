@@ -34,6 +34,7 @@ import { DropdownModule } from 'primeng/dropdown';
     ButtonModule,
     RippleModule,
     InputTextModule,
+    DropdownModule,
     FormsModule,
     DropdownModule
   ]

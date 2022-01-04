@@ -15,6 +15,9 @@
         border: 1px solid #ffffff;
         background: #2b292900 !important;
     }
+    ::ng-deep .p-dropdown .p-dropdown-panel {
+        z-index: 9999;
+    }
 }
 .dialog {
     ::ng-deep .p-dialog-mask {
