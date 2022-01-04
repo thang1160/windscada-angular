@@ -81,7 +81,6 @@ export class AlarmComponent implements AfterViewInit, OnDestroy {
 
   countAlarm(alarms: TurbineLog[]) {
     alarms.forEach(e => {
-      console.log(e.alarm_class);
       if ((e.alarm_class.trim().toLowerCase() == 'alarm' || e.alarm_class.trim().toLowerCase() == 'warning') && e.account_id == null) {
         this.countAlarms += 1;
       }

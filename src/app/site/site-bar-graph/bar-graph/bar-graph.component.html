@@ -1,1 +1,7 @@
-<canvas #myChart style="width: 100%; height: 100%;"></canvas>
+<div class="d-flex flex-column" style="height: 100%;">
+    <div class="d-flex flex-row-reverse">
+        <p-dropdown [style]="{width: '200px'}" class="m-2" [options]="logTypeOption" (onChange)="onChange($event)"
+            optionLabel="name" [(ngModel)]="selectedLogType"></p-dropdown>
+    </div>
+    <canvas #myChart style="width: 100%; height: 100%;"></canvas>
+</div>
