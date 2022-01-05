@@ -3,8 +3,9 @@
         <div style="width: 200px;">
             {{countAlarms}} Alarm
         </div>
-         <p-dropdown [options]="turbine" [(ngModel)]="turbineSeleted" optionLabel="label" optionValue="value" (onChange)="onChangeTurbine()">
-            </p-dropdown>
+        <p-dropdown [options]="turbine" [(ngModel)]="turbineSeleted" optionLabel="label" optionValue="value"
+            (onChange)="onChangeTurbine()">
+        </p-dropdown>
         <button style="margin-left: auto; width: 200px;" pButton pRipple type="button" label="Acknowledge All"
             (click)="setAllAlarmOff()" class="p-button-secondary p-button-sm mr-1" styleClass="p-button-sm"></button>
         <button style="width: 200px; margin-left: 4px;" pButton pRipple type="button" label="Acknowledge"
@@ -15,9 +16,10 @@
     </div>
     <div class="">
         <div class="">
-            <p-table responsiveLayout="scroll" [value]="alarms" [scrollable]="true" scrollHeight="180px"
-                selectionMode="single" [(selection)]="selectedProduct" dataKey="turbine_log_id"
-                responsiveLayout="scroll" [virtualScroll]="true" [virtualRowHeight]="40" [rows]="100">
+            <p-table #pTable responsiveLayout="scroll" [value]="alarms" [scrollable]="true"
+                [scrollHeight]="getScrollHeight(pTable)" selectionMode="single" [(selection)]="selectedProduct"
+                dataKey="turbine_log_id" responsiveLayout="scroll" [virtualScroll]="true" [virtualRowHeight]="40"
+                [rows]="100">
                 <ng-template pTemplate="header">
                     <tr>
                         <th scope="col" style="width: 200px;">Turbine_Name</th>

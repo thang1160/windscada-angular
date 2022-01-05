@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
+import { Table } from 'primeng/table';
 import { Subscription } from 'rxjs';
 import { webSocket } from 'rxjs/webSocket';
 import { TurbineLog } from 'src/app/class/TurbineLog';
@@ -71,7 +72,6 @@ export class AlarmComponent implements OnInit, AfterViewInit, OnDestroy {
           });
           let array: TurbineLog[] = JSON.parse(result);
           for (const item of array) {
-            console.log(item);
             if (this.turbineSeleted == 0) {
               if (!setData.has(item.turbine_log_id)) {
                 setData.add(item.turbine_log_id);
@@ -205,5 +205,15 @@ export class AlarmComponent implements OnInit, AfterViewInit, OnDestroy {
 
   showBasicDialog() {
     this.displayBasic = true;
+  }
+
+  wrapperHeight = 0;
+
+  getScrollHeight(pTable: Table) {
+    if (!this.wrapperHeight) {
+      let wrapper: HTMLDivElement = pTable.el.nativeElement.closest('.component-content');
+      this.wrapperHeight = wrapper.clientHeight;
+    }
+    return this.wrapperHeight - 76 + 'px';
   }
 }

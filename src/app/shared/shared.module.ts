@@ -8,6 +8,10 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TreeTableModule } from 'primeng/treetable';
 import { TurbineStatusComponent } from './turbine-status/turbine-status.component';
 import { ButtonModule } from 'primeng/button';
+import { AlarmComponent } from './alarm/alarm.component';
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { RippleModule } from 'primeng/ripple';
 
 
 
@@ -16,20 +20,25 @@ import { ButtonModule } from 'primeng/button';
     ComponentWrapperComponent,
     KpiComponent,
     PerformanceTrendComponent,
-    TurbineStatusComponent
+    TurbineStatusComponent,
+    AlarmComponent
   ],
   imports: [
     CommonModule,
     DropdownModule,
     FormsModule,
     TreeTableModule,
-    ButtonModule
+    ButtonModule,
+    TableModule,
+    DialogModule,
+    RippleModule
   ],
   exports: [
     ComponentWrapperComponent,
     KpiComponent,
     PerformanceTrendComponent,
-    TurbineStatusComponent
+    TurbineStatusComponent,
+    AlarmComponent
   ]
 })
 export class SharedModule { }
