@@ -89,4 +89,15 @@ export class TurbineStatusComponent implements OnInit, AfterViewInit, OnDestroy 
     }
   }
 
+  wrapperHeight = 0;
+
+  getScrollHeight(divElement: HTMLDivElement) {
+    if (!this.wrapperHeight) {
+      let wrapper: HTMLDivElement | null = divElement.closest('.component-content');
+      if (wrapper) {
+        this.wrapperHeight = wrapper.clientHeight;
+      }
+    }
+    return { 'display': 'block', 'overflow-y': 'scroll', 'height': this.wrapperHeight - 58 + 'px' };
+  }
 }

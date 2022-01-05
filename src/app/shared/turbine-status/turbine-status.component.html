@@ -1,12 +1,7 @@
-<div class="status">
-    <div class="row">
-        <div class="col-9">
-            <p-dropdown [options]="dropDown" [(ngModel)]="dropDownSelected" optionLabel="name" optionValue="value">
-            </p-dropdown>
-        </div>
-    </div>
-    <div class="row" *ngIf="dropDownSelected == 'groups'"
-        [style]="dropDownSelected == 'groups' ? 'display: block; overflow-y: scroll;height: 400px;' : 'display: none'">
+<div class="status d-flex flex-column">
+    <p-dropdown [options]="dropDown" [(ngModel)]="dropDownSelected" optionLabel="name" optionValue="value">
+    </p-dropdown>
+    <div #div *ngIf="dropDownSelected == 'groups'" [ngStyle]="getScrollHeight(div)">
         <p-treeTable [value]="sites">
             <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
                 <tr>
@@ -31,8 +26,7 @@
             </ng-template>
         </p-treeTable>
     </div>
-    <div class="row" *ngIf="dropDownSelected == 'turbines'"
-        [style]="dropDownSelected == 'turbines' ? 'display: block; overflow-y: scroll;height: 400px;' : 'display: none'">
+    <div #div *ngIf="dropDownSelected == 'turbines'" [ngStyle]="getScrollHeight(div)">
         <p-treeTable [value]="turbines">
             <ng-template pTemplate="body" let-rowData>
                 <tr>
@@ -44,8 +38,7 @@
             </ng-template>
         </p-treeTable>
     </div>
-    <div class="row" *ngIf="dropDownSelected == 'status'"
-        [style]="dropDownSelected == 'status' ? 'display: block; overflow-y: scroll;height: 400px;' : 'display: none'">
+    <div #div *ngIf="dropDownSelected == 'status'" [ngStyle]="getScrollHeight(div)">
         <p-treeTable [value]="status">
             <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
                 <tr>
