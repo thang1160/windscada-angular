@@ -1,7 +1,7 @@
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,7 +13,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeModule } from './home/home.module';
 import { SiteModule } from './site/site.module';
 import { TurbineModule } from './turbine/turbine.module';
+import { StartupService } from './service/startup.service';
+import { AuthModule } from './auth/auth.module';
 
+export function startupServiceFactory(startupService: StartupService): Function {
+  return () => startupService.load();
+}
 
 @NgModule({
   declarations: [
@@ -32,10 +37,18 @@ import { TurbineModule } from './turbine/turbine.module';
     DropdownModule,
     HomeModule,
     SiteModule,
-    TurbineModule
+    TurbineModule,
+    AuthModule
   ],
   providers: [
-    // PerformanceTrendService,
+    StartupService,
+    {
+      // Provider for APP_INITIALIZER
+      provide: APP_INITIALIZER,
+      useFactory: startupServiceFactory,
+      deps: [StartupService],
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
