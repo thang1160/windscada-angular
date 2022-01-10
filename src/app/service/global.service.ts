@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class GlobalService {
 
   activeProfile = {
-    name: '',
+    username: '',
     email: '',
     id: 0,
     functions: Array.from<string>([]),

@@ -1,15 +1,15 @@
-<div style="background-color: white;">
-    <div class="mb-3 row">
-        <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
-        <div class="col-sm-10">
-            <input [(ngModel)]="username" type="text" class="form-control" id="inputUsername">
+<div id="login-wrapper">
+    <div id="login-body">
+        <span id="title">WINDSCADA SYSTEM</span>
+        <div class="p-inputgroup">
+            <span class="p-inputgroup-addon"><span class="pi pi-user"></span></span>
+            <input [(ngModel)]="username" type="text" pInputText placeholder="Username">
         </div>
-    </div>
-    <div class="mb-3 row">
-        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-        <div class="col-sm-10">
-            <input [(ngModel)]="password" type="password" class="form-control" id="inputPassword">
+        <div class="p-inputgroup mt-2">
+            <span class="p-inputgroup-addon"><span class="pi pi-lock-open"></span></span>
+            <input [(ngModel)]="password" type="password" pInputText placeholder="Password">
         </div>
+        <button class="mt-3 p-button-outlined" id="login-button" pButton type="button" label="Đăng nhập"
+            (click)="login()"></button>
     </div>
-    <button pButton type="button" label="Login" (click)="login()"></button>
 </div>

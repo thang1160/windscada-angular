@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../service/auth.service';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { AuthService } from '../service/auth.service';
     CommonModule,
     AuthRoutingModule,
     ButtonModule,
-    FormsModule
+    FormsModule,
+    InputTextModule
   ],
   providers: [
     AuthService

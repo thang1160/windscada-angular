@@ -1,0 +1,134 @@
+#header {
+  margin: 0px auto;
+  background: #000000;
+  width: 100%;
+  min-height: auto;
+
+  #banner {
+    background: #000000;
+    img {
+      height: 80px;
+    }
+  }
+
+  #menu_top > ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    width: 1247px;
+  }
+
+  #menu_top > ul > li {
+    float: left;
+    position: relative;
+  }
+
+  #menu_top > ul > li > a {
+    text-decoration: none;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    color: #ffffff;
+    padding: 0px 15px 0px 15px;
+    border-right: 1px solid #000000;
+  }
+
+  #menu_top > ul > li > a:hover {
+    color: #836f6f;
+    background: #fff;
+    transition: ease-in 0.25s;
+    -moz-transition: ease-in 0.25s;
+    -webkit-transition: ease-in 0.25s;
+  }
+
+  #menu_top > ul > li:hover ul.sub-menu {
+    /*tác động con trỏ (hover) vào thanh menu, submenu hiển thị*/
+    display: block; /*block để hiện submenu*/
+  }
+
+  #menu_top {
+    background: #808080;
+    height: 30px;
+    background-image: linear-gradient(to bottom, #5b5c5b, #242524);
+
+    #dark-light {
+      background: none;
+      border: none;
+      float: right;
+      width: 40px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+    }
+    #Home {
+      background: none;
+      border: none;
+      float: right;
+      width: 40px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      margin-right: 10px;
+    }
+
+    ul.sub-menu {
+      width: 150px;
+      background: #808080;
+      min-height: 50px;
+      margin: 0px; /*căn lề */
+      padding: 0px;
+      display: none;
+      position: absolute;
+      z-index: 1;
+    }
+
+    ul.sub-menu li {
+      list-style: none; /*kiểu đầu dòng k có gì*/
+    }
+
+    ul.sub-menu li a {
+      color: #ffffff; /*màu chữ liên kết a*/
+      text-decoration: none; /*k gạch chân*/
+      display: block; /*dùng liên kết a cũng sử dụng display (block) để */
+      border-top: solid 1px #ccc; /*gạch submenu bên trên với màu bất kì*/
+      line-height: 30px; /*căn chiều cao của gạch bên trên, thường h sẽ bằng h của div*/
+      text-indent: 10px;
+    }
+
+    ul.sub-menu li a:hover {
+      /*tác động con trỏ (hover) xuất hiện hiệu ứng và biến đổi màu */
+      color: #836f6f;
+      background: #fff;
+      transition: ease-in 0.35s;
+      -moz-transition: ease-in 0.35s;
+      -webkit-transition: ease-in 0.35s;
+    }
+
+    #logout-container {
+      display: flex;
+      height: 100%;
+      flex-direction: row-reverse;
+      align-items: center;
+
+      svg {
+        margin-right: 10px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  #account_info {
+    height: 30px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+
+    span {
+      margin-right: 10px;
+      color: white;
+    }
+  }
+}

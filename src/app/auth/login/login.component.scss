@@ -1,0 +1,30 @@
+#login-wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: url(/windscada/assets/pexels-pixabay-290527.jpg);
+  background-repeat: round;
+
+  #login-body {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    padding: 25px;
+    // background: #000; with opacity
+    background: rgba(0, 0, 0, 0.5);
+
+    #title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        text-align: center;
+        color: white;
+    }
+
+    #login-button {
+      width: 100%;
+    }
+  }
+}

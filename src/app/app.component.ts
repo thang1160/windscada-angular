@@ -8,14 +8,23 @@ import { GlobalService } from './service/global.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'windscada-angular';
-  // create constructor with router and global service
-  constructor(private router: Router, private global: GlobalService) { }
 
-  // create ngOnInit and check global service for active profile and redirect to login if not logged in
+  constructor(private router: Router, public global: GlobalService) { }
+
   ngOnInit(): void {
     if (!this.global.activeProfile.id) {
       this.router.navigate(['/login'], { replaceUrl: true });
     }
+  }
+
+  logout() {
+    this.global.activeProfile = {
+      username: '',
+      email: '',
+      id: 0,
+      functions: Array.from<string>([]),
+    };
+    document.cookie = `token=;path=/windscada;expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+    this.router.navigate(['/login'], { replaceUrl: true });
   }
 }
