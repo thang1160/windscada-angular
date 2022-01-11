@@ -8,5 +8,9 @@ export interface TurbineLog {
     value: string,
     alarm_class: string,
     turbine_name: string,
-    isDeactive: string
+    isDeactive: string,
+    power: string,
+    power_value: string,
+    wind: string,
+    wind_value: string
 }
