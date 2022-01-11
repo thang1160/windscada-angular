@@ -33,6 +33,7 @@ import { TurbineModule } from './turbine/turbine.module';
     HomeModule,
     SiteModule,
     TurbineModule
+    
   ],
   providers: [
     // PerformanceTrendService,

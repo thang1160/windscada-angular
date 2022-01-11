@@ -14,7 +14,7 @@ export class BarGraphComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('myChart') chartCanvas: ElementRef<HTMLCanvasElement> | undefined;
 
   socket = webSocket({
-    url: "ws://localhost:8889/bar-graph",
+    url: "ws://localhost:8888/bar-graph",
     deserializer: (e) => e.data.text()
   });
 
