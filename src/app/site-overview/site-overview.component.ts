@@ -19,7 +19,7 @@ export class SiteOverviewComponent implements OnInit
   private observe: Subscription | undefined;
 
   socket = webSocket({
-    url: "ws://localhost:8889/overview",
+    url: "ws://localhost:8888/overview",
     deserializer: (e) => e.data.text()
   });
 

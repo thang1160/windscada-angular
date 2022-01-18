@@ -19,7 +19,7 @@ export class PerformanceDataComponent implements OnInit {
   }
 
   socket = webSocket({
-    url: "ws://localhost:8889/overview",
+    url: "ws://localhost:8888/overview",
     deserializer: (e) => e.data.text()
   });
 

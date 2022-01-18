@@ -18,7 +18,7 @@ export class PerformanceTrendComponent implements OnInit, AfterViewInit, OnDestr
   @ViewChild('myChart') chartCanvas: ElementRef<HTMLCanvasElement> | undefined;
 
   socket = webSocket({
-    url: "ws://localhost:8889/performance-trend",
+    url: "ws://localhost:8888/performance-trend",
     deserializer: (e) => e.data.text()
   });
 
