@@ -14,14 +14,15 @@ import { FormsModule } from '@angular/forms';
 import { SiteBarGraphComponent } from './site-bar-graph/site-bar-graph.component';
 import { BarGraphComponent } from './site-bar-graph/bar-graph/bar-graph.component';
 import { DropdownModule } from 'primeng/dropdown';
-
+import { PerformanceDataComponent } from '../performance-data/performance-data.component';
 
 @NgModule({
   declarations: [
     SiteTrendscreenComponent,
     SiteOverviewComponent,
     SiteBarGraphComponent,
-    BarGraphComponent
+    BarGraphComponent,
+    PerformanceDataComponent
   ],
   imports: [
     CommonModule,

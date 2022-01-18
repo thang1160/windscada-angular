@@ -12,5 +12,11 @@ export interface TurbineLog {
     power: string,
     power_value: string,
     wind: string,
-    wind_value: string
+    gen: string,
+    rotor: string,
+    temp_a: string,
+    react: string,
+    temp_n: string,
+    wind_value: string,
+    nacelle: string,
 }

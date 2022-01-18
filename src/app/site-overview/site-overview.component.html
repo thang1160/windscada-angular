@@ -1,11 +1,11 @@
 <div class="site-overview" style="padding-top: 60px;">
     <div class="row" style="justify-content: space-between;">
-        <div *ngFor="let item of overviewList" class="col-2 mb-5"> 
-            <div>
+        <div *ngFor="let item of overviewList" class="col-2 mb-5">
+            <div class="text-center">
                 <span [id]="item.turbine_id" pTooltip="{{generateTooltip(item)}}" placeholder="Right"
-                    tooltipEvent="hover" [escape]="false">
+                    tooltipEvent="hover" [escape]="false" *ngIf="item.power_value && item.power_value != '0'">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                        aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet"
+                        aria-hidden="true" role="img" width="100" height="100" preserveAspectRatio="xMidYMid meet"
                         viewBox="0 0 48 48">
                         <g fill="none">
                             <path d="M24 30v14" stroke="green" stroke-width="4" stroke-linecap="round"
@@ -17,20 +17,21 @@
                         </g>
                     </svg>
                 </span>
+                <span [id]="item.turbine_id" pTooltip="{{generateTooltip(item)}}" placeholder="Right"
+                tooltipEvent="hover" [escape]="false" *ngIf="!item.power_value || item.power_value == '0'">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        aria-hidden="true" role="img" width="100" height="100" preserveAspectRatio="xMidYMid meet"
+                        viewBox="0 0 48 48">
+                        <g fill="none">
+                            <path d="M24 30v14" stroke="red" stroke-width="4" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path
+                                d="M29 23c11 5 16 14 16 14s-12 0-21-8c-9 8-21 8-21 8s5-10 16-14c0-13 5-19 5-19s5 6 5 19z"
+                                stroke="red" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                            <circle cx="24" cy="24" r="2" fill="red" />
+                        </g>
+                    </svg>
+                </span>
             </div>
-            <!-- <div>
-            <span>
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
-                    role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48">
-                    <g fill="none">
-                        <path d="M24 30v14" stroke="red" stroke-width="4" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M29 23c11 5 16 14 16 14s-12 0-21-8c-9 8-21 8-21 8s5-10 16-14c0-13 5-19 5-19s5 6 5 19z"
-                            stroke="red" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-                        <circle cx="24" cy="24" r="2" fill="red" />
-                    </g>
-                </svg>
-            </span>
-        </div> -->
         </div>
     </div>

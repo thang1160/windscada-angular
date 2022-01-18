@@ -1,0 +1,27 @@
+<div class="performance-data">
+    <div>
+        <p-table #pTable responsiveLayout="scroll" [value]="overviewList" [scrollable]="true"
+            [scrollHeight]="getScrollHeight(pTable)">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th scope="col">Turbine</th>
+                    <th scope="col">Turbine Status</th>
+                    <th scope="col">Power (kW)</th>
+                    <th scope="col">Wind Speed (m/s)</th>
+                    <th scope="col">Generator Speed (rpm)</th>
+                    <th scope="col">Group</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-turbine>
+                <tr>
+                    <td>{{turbine.turbine_name}}</td>
+                    <td>{{turbine.power_value && turbine.power_value != '0' ? 'Online' : 'Repair'}}</td>
+                    <td>{{turbine.power_value}}</td>
+                    <td>{{turbine.wind_value}}</td>
+                    <td>{{turbine.gen}}</td>
+                    <td>Tây Nguyên WindPower</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>>

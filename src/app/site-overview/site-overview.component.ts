@@ -19,7 +19,7 @@ export class SiteOverviewComponent implements OnInit
   private observe: Subscription | undefined;
 
   socket = webSocket({
-    url: "ws://localhost:8888/overview",
+    url: "ws://localhost:8889/overview",
     deserializer: (e) => e.data.text()
   });
 
@@ -39,15 +39,50 @@ export class SiteOverviewComponent implements OnInit
 
   generateTooltip(value: TurbineLog): string {
     let html = `<table style="width: 100%;">
-        <tr class="kpi-row">
-            <th>Turbine 1</th>
+        <tr class="tooltip-row">
+            <th>Turbine `+ value.turbine_id + `</th>
+            <th></th>
+            <th></th>
         </tr>
-        <tr class="kpi-row">
-            <td class="kpi-value">Power ` + parseFloat(value.power_value).toFixed(2) + ` kW</td>
-            <td></td>
+        <tr class="tooltip-row">
+            <td>Power</td>
+            <td style="text-align: right;">` + parseFloat(value.power_value).toFixed(2) + `</td>
+            <td>kW</td>
         </tr>
-        <tr class="kpi-row">
-            <td class="kpi-value">Wind Speed `+ parseFloat(value.wind_value).toFixed(2) + ` m/s</td>
+        <tr class="tooltip-row">
+            <td>Wind Speed</td>
+            <td style="text-align: right;">` + parseFloat(value.wind_value).toFixed(2) + `</td>
+            <td>m/s</td>
+        </tr>
+        <tr class="tooltip-row">
+            <td>Generate Speed</td>
+            <td style="text-align: right;">` + parseFloat(value.gen).toFixed(2) + `</td>
+            <td>rpm</td>
+        </tr>
+        <tr class="tooltip-row">
+            <td>Rotor Speed</td>
+            <td style="text-align: right;">` + parseFloat(value.rotor).toFixed(2) + `</td>
+            <td>rpm</td>
+        </tr>
+        <tr class="tooltip-row">
+            <td>Temp Ambient</td>
+            <td style="text-align: right;">` + parseFloat(value.temp_a).toFixed(2) + `</td>
+            <td>&#8451;</td>
+        </tr>
+        <tr class="tooltip-row">
+            <td>Reactive Power</td>
+            <td style="text-align: right;">` + parseFloat(value.react).toFixed(2) + `</td>
+            <td>KVAR</td>
+        </tr>
+        <tr class="tooltip-row">
+            <td>Temp Nacelle</td>
+            <td style="text-align: right;">` + parseFloat(value.temp_n).toFixed(2) + `</td>
+            <td>&#8451;</td>
+        </tr>
+        <tr class="tooltip-row">
+            <td>Nacelle Position</td>
+            <td style="text-align: right;">` + parseFloat(value.nacelle).toFixed(2) + `</td>
+            <td>&deg;</td>
         </tr>
     </table>`
 

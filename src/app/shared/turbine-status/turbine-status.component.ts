@@ -12,7 +12,7 @@ export class TurbineStatusComponent implements OnInit, AfterViewInit, OnDestroy 
 
 
   socket = webSocket({
-    url: "ws://localhost:8888/turbine-status",
+    url: "ws://localhost:8889/turbine-status",
     deserializer: (e) => e.data.text()
   });
 
@@ -26,7 +26,6 @@ export class TurbineStatusComponent implements OnInit, AfterViewInit, OnDestroy 
   observe: Subscription | undefined;
 
   ngOnInit(): void {
-
     this.dropDown = [
       { name: 'By Status', value: 'status' },
       { name: 'By Groups', value: 'groups' },

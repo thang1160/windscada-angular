@@ -43,12 +43,12 @@
 //   }
 
 //   socket = webSocket({
-//     url: "ws://localhost:8888/alarms",
+//     url: "ws://localhost:8889/alarms",
 //     deserializer: (e) => e.data.text()
 //   });
 
 //   socket1 = webSocket({
-//     url: "ws://localhost:8888/alarms-warning",
+//     url: "ws://localhost:8889/alarms-warning",
 //     deserializer: (e) => e.data.text()
 //   });
 
