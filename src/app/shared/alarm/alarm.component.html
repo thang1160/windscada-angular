@@ -1,4 +1,4 @@
-<div class="alarm">
+<div id="alarm">
     <div class="d-flex mb-3" style="color: white;">
         <div style="width: 200px;">
             {{countAlarms}} Alarm
@@ -11,39 +11,37 @@
         <button style="width: 200px; margin-left: 4px;" pButton pRipple type="button" label="Acknowledge"
             (click)="setAlarmOff()" class="p-button-secondary p-button-sm" styleClass="p-button-sm"></button>
         <input style="margin-left: 8px;" [(ngModel)]="searchTagName" type="text" pInputText placeholder="Keyword">
-        <button type="button" (click)="search(turbineSeleted)" pButton pRipple icon="pi pi-search"
+        <button type="button" (click)="search()" pButton pRipple icon="pi pi-search"
             class="p-button-secondary p-button-sm" styleClass="p-button-warn"></button>
     </div>
-    <div class="">
-        <div class="">
-            <p-table #pTable responsiveLayout="scroll" [value]="alarms" [scrollable]="true"
-                [scrollHeight]="getScrollHeight(pTable)" selectionMode="single" [(selection)]="selectedProduct"
-                dataKey="turbine_log_id" responsiveLayout="scroll" 
-                [rows]="100">
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th scope="col" style="width: 200px;">Turbine_Name</th>
-                        <th scope="col" style="width: 200px;">Time</th>
-                        <th scope="col" style="width: 200px;">Signal_Name</th>
-                        <th scope="col" style="width: 100px;">OPC_Tag_Name</th>
-                        <th scope="col" style="width: 100px;">Alarm_Class</th>
-                        <th scope="col" style="width: 200px;">Description</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-alarm>
-                    <tr [pSelectableRow]=alarm>
-                        <td style="width: 200px; font-weight: 900;" (click)="onRowSelect($event)"
-                            [style]="redNotice(alarm)">
-                            {{alarm.turbine_name}}</td>
-                        <td style="width: 200px;" [style]="redNotice(alarm)">{{alarm.log_time}}</td>
-                        <td style="width: 200px;" [style]="redNotice(alarm)">{{alarm.signal_name}}</td>
-                        <td style="width: 100px;" [style]="redNotice(alarm)">{{alarm.opc_tag_name}}</td>
-                        <td style="width: 100px;" [style]="redNotice(alarm)">{{alarm.alarm_class}}</td>
-                        <td style="width: 200px;" [style]="redNotice(alarm)">{{alarm.description}}</td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </div>
+    <div id="alarm-table-wrapper">
+        <p-table [value]="alarms" [lazy]="true" (onLazyLoad)="loadAlarms($event)" responsiveLayout="scroll"
+            [(selection)]="selectedProduct" selectionMode="single" [paginator]="true" [rows]="rows"
+            [totalRecords]="totalRecords" [loading]="loading" #pTable [scrollHeight]="getScrollHeight(pTable)"
+            [rowsPerPageOptions]="[10,25,50]">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th scope="col" style="width: 200px;">Turbine_Name</th>
+                    <th scope="col" style="width: 200px;">Time</th>
+                    <th scope="col" style="width: 200px;">Signal_Name</th>
+                    <th scope="col" style="width: 100px;">OPC_Tag_Name</th>
+                    <th scope="col" style="width: 100px;">Alarm_Class</th>
+                    <th scope="col" style="width: 200px;">Description</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-alarm>
+                <tr [pSelectableRow]=alarm>
+                    <td class="nowrap" style="width: 200px; font-weight: 900;" (click)="onRowSelect($event)"
+                        [style]="redNotice(alarm)">
+                        {{alarm.turbine_name}}</td>
+                    <td class="nowrap" style="width: 200px;" [style]="redNotice(alarm)">{{alarm.log_time}}</td>
+                    <td class="nowrap" style="width: 200px;" [style]="redNotice(alarm)">{{alarm.signal_name}}</td>
+                    <td class="nowrap" style="width: 100px;" [style]="redNotice(alarm)">{{alarm.opc_tag_name}}</td>
+                    <td class="nowrap" style="width: 100px;" [style]="redNotice(alarm)">{{alarm.alarm_class}}</td>
+                    <td class="nowrap" style="width: 200px;" [style]="redNotice(alarm)">{{alarm.description}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
     </div>
 </div>
 

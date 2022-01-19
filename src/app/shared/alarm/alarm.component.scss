@@ -1,22 +1,53 @@
-.alarm {
-    ::ng-deep .p-datatable .p-datatable-thead > tr > th {
-        border: 1px solid #ffffff;
-        background: #2b2929;
-        padding: 5px;
-    }
-    ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
-        border: 1px solid #ffffff;
-        background: #2b2929;
-        padding: 5px;
-    }
-    ::ng-deep .p-datatable .p-datatable-tbody > tr.p-highlight > td {
-        color: white;
-        font-weight: bolder;
-        border: 1px solid #ffffff;
-        background: #2b292900 !important;
-    }
+#alarm {
     ::ng-deep .p-dropdown .p-dropdown-panel {
         z-index: 9999;
+    }
+    .nowrap {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    #alarm-table-wrapper {
+        ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+            border: 1px solid #ffffff;
+            background: #2b2929;
+            padding: 5px;
+        }
+        ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+            border: 1px solid #ffffff;
+            background: #2b2929;
+            padding: 5px;
+        }
+        ::ng-deep .p-datatable .p-datatable-tbody > tr.p-highlight > td {
+            color: white;
+            font-weight: bolder;
+            border: 1px solid #ffffff;
+            background: #2b292900 !important;
+        }
+
+        ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+        }
+
+        ::ng-deep .p-dropdown-panel {
+            top: -100px;
+        }
+        
+        .layout-news-active ::ng-deep .p-datatable tr > th {
+            top: 0;
+        }
+        
+        @media screen and (max-width: 64em) {
+            ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+                top: 0;
+            }
+        
+            .layout-news-active ::ng-deep .p-datatable tr > th {
+                top: 0;
+            }
+        }
     }
 }
 .dialog {
