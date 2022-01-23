@@ -9,8 +9,8 @@ export class AlarmServices {
 
   constructor(private _http: HttpClient) { }
 
-  getAlarms(tag_name: string, turbine_id: number): Observable<any> {
-    return this._http.get("/windscada/api/v1/alarms?name=" + tag_name + '&turbine_id=' + turbine_id);
+  getAlarms(tag_name: string, turbine_id: number, page: number, page_size: number): Observable<any> {
+    return this._http.get(`/windscada/api/v1/alarms?name=${tag_name}&turbine_id=${turbine_id}&page=${page}&page_size=${page_size}`);
   }
 
   getAlarmsRed(): Observable<any> {

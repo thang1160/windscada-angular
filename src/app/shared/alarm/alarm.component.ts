@@ -1,6 +1,7 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
+import { LazyLoadEvent } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { Subscription } from 'rxjs';
 import { webSocket } from 'rxjs/webSocket';
@@ -11,8 +12,10 @@ import { AlarmServices } from 'src/app/service/alarm.service';
   templateUrl: './alarm.component.html',
   styleUrls: ['./alarm.component.scss']
 })
-export class AlarmComponent implements OnInit, AfterViewInit, OnDestroy {
-
+export class AlarmComponent implements OnInit, OnDestroy {
+  @ViewChild('pTable') pTable: Table | undefined;
+  @Input() rows = 10;
+  public first = 0;
 
   public alarms: TurbineLog[] = [];
   public countAlarms = 0;
@@ -22,7 +25,6 @@ export class AlarmComponent implements OnInit, AfterViewInit, OnDestroy {
   public selectedProduct: any
   dialogRef: any;
   observe: Subscription | undefined;
-  observe1: Subscription | undefined;
 
   public turbineSeleted: number = 0;
   public turbine: any = []
@@ -33,74 +35,17 @@ export class AlarmComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.observe) {
       this.observe.unsubscribe();
     }
-    if (this.observe1) {
-      this.observe1.unsubscribe();
-    }
   }
 
   onChangeTurbine() {
     console.log(this.turbineSeleted);
-    this.search(this.turbineSeleted)
+    this.search();
   }
 
   socket = webSocket({
     url: "ws://localhost:8888/alarms",
     deserializer: (e) => e.data.text()
   });
-
-  socket1 = webSocket({
-    url: "ws://localhost:8888/alarms-warning",
-    deserializer: (e) => e.data.text()
-  });
-
-
-  ngAfterViewInit(): void {
-    this.initSocket();
-    this.initSocket1();
-  }
-
-  initSocket() {
-    let setData = new Set();
-    if (!this.observe || this.observe?.closed)
-      this.observe = this.socket.subscribe((data: Promise<string>) => {
-        data.then(result => {
-          let tempId = this.alarms.map(e => {
-            return e.turbine_log_id;
-          });
-          tempId.forEach(e => {
-            setData.add(e);
-          });
-          let array: TurbineLog[] = JSON.parse(result);
-          for (const item of array) {
-            if (this.turbineSeleted == 0) {
-              if (!setData.has(item.turbine_log_id)) {
-                setData.add(item.turbine_log_id);
-                this.alarms = [item, ...this.alarms];
-              }
-            }
-            else {
-              if (item.turbine_id == this.turbineSeleted) {
-                if (!setData.has(item.turbine_log_id)) {
-                  setData.add(item.turbine_log_id);
-                  this.alarms = [item, ...this.alarms];
-                }
-              }
-            }
-          }
-        }).catch(x => console.error(x))
-      });
-  }
-
-  initSocket1() {
-    if (!this.observe1 || this.observe1?.closed)
-      this.observe1 = this.socket1.subscribe((data: Promise<string>) => {
-        data.then(result => {
-          let object = JSON.parse(result);
-          this.countAlarms = object[0].count_warning;
-          console.log(this.countAlarms);
-        }).catch(x => console.error(x))
-      });
-  }
 
   ngOnInit(): void {
     this.turbine = [
@@ -144,20 +89,25 @@ export class AlarmComponent implements OnInit, AfterViewInit, OnDestroy {
         'label': 'Turbine 12',
         'value': 12
       },
-    ]
-    this.alarmServices.getAlarms("", 0).subscribe(x => {
-      this.alarms = x;
-    })
+    ];
   }
 
-  search(turbine_id: number) {
+  initSocket() {
+    if (!this.observe || this.observe?.closed)
+      this.observe = this.socket.subscribe((data: Promise<string>) => {
+        data.then(() => {
+          if (!this.loading) {
+            this.loadAlarms({ first: this.first, rows: this.rows });
+          }
+        }).catch(x => console.error(x))
+      });
+  }
+
+  search() {
     if (this.observe) {
       this.observe.unsubscribe();
     }
-    this.alarmServices.getAlarms(this.searchTagName, turbine_id).subscribe(x => {
-      this.alarms = x;
-      this.initSocket();
-    })
+    this.pTable?.reset();
   }
 
   setAlarmOff() {
@@ -168,7 +118,7 @@ export class AlarmComponent implements OnInit, AfterViewInit, OnDestroy {
         ids: this.selectedProduct.turbine_log_id + ''
       }
       this.alarmServices.putAlarmsOff(data).subscribe(x => {
-        this.search(this.turbineSeleted);
+        this.search();
       })
     }
   }
@@ -186,7 +136,7 @@ export class AlarmComponent implements OnInit, AfterViewInit, OnDestroy {
       ids: temp
     }
     this.alarmServices.putAlarmsOff(data).subscribe(x => {
-      this.search(this.turbineSeleted);
+      this.search();
     })
   }
 
@@ -214,6 +164,27 @@ export class AlarmComponent implements OnInit, AfterViewInit, OnDestroy {
       let wrapper: HTMLDivElement = pTable.el.nativeElement.closest('.component-content');
       this.wrapperHeight = wrapper.clientHeight;
     }
-    return this.wrapperHeight - 76 + 'px';
+    return this.wrapperHeight - 76 - 62 + 'px';
+  }
+
+  loading = true;
+  totalRecords = 0;
+
+  loadAlarms(event: LazyLoadEvent) {
+    if (event.first == undefined || event.rows == undefined) return;
+    this.first = event.first;
+    this.rows = event.rows;
+    this.loading = true;
+    this.alarmServices.getAlarms(this.searchTagName, this.turbineSeleted, this.first / this.rows, this.rows).subscribe((x: any[]) => {
+      console.log(x);
+      this.alarms = x;
+      this.loading = false;
+      if (x && x[0] && !isNaN(x[0].total)) {
+        this.totalRecords = parseInt(x[0].total);
+      } else {
+        this.totalRecords = 0;
+      }
+      this.initSocket();
+    });
   }
 }
